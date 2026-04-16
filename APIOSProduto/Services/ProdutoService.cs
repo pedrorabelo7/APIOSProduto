@@ -30,6 +30,19 @@ namespace APIOSProduto.Services
             return produto;
         }
 
+        public async Task<bool> Delete(int id)
+        {
+            var produto = await _context.Produtos.FindAsync(id);
+
+            if (produto == null)
+                return false;
+
+            _context.Produtos.Remove(produto);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<List<Produto>> GetAll()
         {
             return await _context.Produtos.ToListAsync();
@@ -38,6 +51,21 @@ namespace APIOSProduto.Services
         public async Task<Produto> GetById(int id)
         {
             return await _context.Produtos.FindAsync(id);
+        }
+
+        public async Task<Produto> Update(int id, ProdutoDTO dto)
+        {
+            var produto = await _context.Produtos.FindAsync(id);
+
+            if (produto == null)
+                return null;
+
+            produto.Nome = dto.Nome;
+            produto.Preco = dto.Preco;
+
+            await _context.SaveChangesAsync();
+
+            return produto;
         }
     }
 }
