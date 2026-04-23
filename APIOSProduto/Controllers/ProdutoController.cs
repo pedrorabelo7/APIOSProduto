@@ -2,10 +2,12 @@
 using APIOSProduto.Entities;
 using APIOSProduto.Models;
 using APIOSProduto.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIOSProduto.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
@@ -72,7 +74,6 @@ namespace APIOSProduto.Controllers
             });
         }
 
-
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] ProdutoDTO dto)
         {
@@ -94,7 +95,6 @@ namespace APIOSProduto.Controllers
 
             });
         }
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

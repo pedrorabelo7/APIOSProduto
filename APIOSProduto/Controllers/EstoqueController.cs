@@ -1,10 +1,11 @@
 ﻿using APIOSProduto.DTOs;
 using APIOSProduto.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace APIOSProduto.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class EstoqueController : ControllerBase
